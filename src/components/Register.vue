@@ -1,7 +1,7 @@
 <template>
- <div id="appp">
+  <div id="appp">
     <div id="login">
-<div id="description">
+      <div id="description">
         <h1 @click="goFront">Kubb.in</h1>
         <p>
           By registering, you are willing to save time and be more organized as
@@ -13,9 +13,8 @@
         </p>
       </div>
       <div id="form">
-      <form @submit.prevent="handleRegister">
-        <div v-if="!successful">
-          
+        <form @submit.prevent="handleRegister">
+          <div v-if="!successful">
             <label for="username">Username</label>
             <input
               v-model="user.username"
@@ -30,8 +29,7 @@
             >
               {{ errors.first("username") }}
             </div>
-         
-          
+
             <label for="email">Email</label>
             <input
               v-model="user.email"
@@ -43,7 +41,7 @@
             <div v-if="submitted && errors.has('email')" class="alert-danger">
               {{ errors.first("email") }}
             </div>
-      
+
             <label for="password">Password</label>
             <input
               v-model="user.password"
@@ -60,18 +58,16 @@
             </div>
 
             <button class="btn btn-primary btn-block">Sign Up</button>
-   
+          </div>
+        </form>
+        <div
+          v-if="message"
+          class="alert"
+          :class="successful ? 'alert-success' : 'alert-danger'"
+        >
+          {{ message }}
         </div>
-      </form>
-            <div
-        v-if="message"
-        class="alert"
-        :class="successful ? 'alert-success' : 'alert-danger'"
-      >
-        {{ message }}
       </div>
-  </div>
-
     </div>
   </div>
 </template>
@@ -100,7 +96,7 @@ export default class Register extends Vue {
       this.$router.push("/profile");
     }
   }
- goFront() {
+  goFront() {
     this.$router.push("/");
   }
   handleRegister() {
