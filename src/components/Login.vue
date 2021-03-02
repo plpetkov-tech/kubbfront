@@ -2,7 +2,7 @@
   <div id="appp">
     <div id="login">
       <div id="description">
-        <h1>Kubb.in</h1>
+        <h1 @click="goFront">Kubb.in</h1>
         <p>
           By logging in you agree to the ridiculously long terms that you didn't
           bother to read. If you don't have an account register
@@ -52,10 +52,10 @@ export default class Login extends Vue {
   private message: string = "";
   private hidePassword: boolean = true;
 
-  get passwordType():string {
+  get passwordType(): string {
     return this.hidePassword ? "password" : "text";
   }
-  get passwordIcon():string {
+  get passwordIcon(): string {
     return this.hidePassword ? "eye" : "eye-slash";
   }
 
@@ -69,6 +69,10 @@ export default class Login extends Vue {
     if (this.isLoggedIn) {
       this.$router.push("/main");
     }
+  }
+
+  goFront() {
+    this.$router.push("/");
   }
   handleLogin() {
     this.loading = true;

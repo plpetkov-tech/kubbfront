@@ -2,7 +2,7 @@
  <div id="appp">
     <div id="login">
 <div id="description">
-        <h1>Kubb.in</h1>
+        <h1 @click="goFront">Kubb.in</h1>
         <p>
           By registering, you are willing to save time and be more organized as
           you will have complete control over your micro transactions that come
@@ -100,7 +100,9 @@ export default class Register extends Vue {
       this.$router.push("/profile");
     }
   }
-
+ goFront() {
+    this.$router.push("/");
+  }
   handleRegister() {
     this.message = "";
     this.submitted = true;
