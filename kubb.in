@@ -15,5 +15,5 @@ server {
         ssl_certificate_key  /etc/nginx/ssl/privkey.pem;
 
   root "/usr/share/nginx/html";
-  index index.html index.htm index.php; #####fruther config####
-  }
+  index index.html index.htm index.php; 
+}
