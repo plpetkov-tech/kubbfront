@@ -58,14 +58,17 @@ export default class Main extends Vue {
   @Auth.Action
   private signOut!: () => void;
 
-  deleteOneSub(subid:any){
-    UserService.deleteOneSub(subid).then((data)=>{
-      this.$router.go(0)
-    });
+  deleteOneSub(subid: any) {
+    const res = prompt("Are you sure? Type yes to confirm deletion");
+    if (res.toLowerCase() === "yes") {
+      UserService.deleteOneSub(subid).then((data) => {
+        this.$router.go(0);
+      });
+    }
   }
   readData(
     data: {
-      id:string;
+      id: string;
       name: string;
       link: string;
       price: string;
@@ -90,7 +93,7 @@ export default class Main extends Vue {
       headCell;
     data.forEach(
       (element: {
-        id:string;
+        id: string;
         name: string;
         link: string;
         price: string;
@@ -129,13 +132,13 @@ export default class Main extends Vue {
         cellar.innerText = element.autoRenewal === "true" ? "Yes" : "No";
 
         celldelete.innerHTML = `<button class='btn btn-secondary'>Delete</button>`;
-        celldelete.addEventListener('click',()=>{
-          this.deleteOneSub(`${element.id}`)
-        })
+        celldelete.addEventListener("click", () => {
+          this.deleteOneSub(`${element.id}`);
+        });
         celledit.innerHTML = "<button class='btn btn-secondary'>Edit</button>";
-        celledit.addEventListener('click',()=>{
-          this.goToEditPage(`${element.id}`)
-        })
+        celledit.addEventListener("click", () => {
+          this.goToEditPage(`${element.id}`);
+        });
         row.append(
           cellname,
           celllink,
@@ -154,10 +157,12 @@ export default class Main extends Vue {
     );
   }
   goToEditPage(arg0: string) {
-    this.$router.push('/edit/'+arg0)
+    this.$router.push("/edit/" + arg0);
   }
-  editOneSub(id: string,sub:any) {
-    UserService.editOneSubscription(id,sub).then((data)=>{console.log(data)});
+  editOneSub(id: string, sub: any) {
+    UserService.editOneSubscription(id, sub).then((data) => {
+      console.log(data);
+    });
   }
   mounted() {
     UserService.getSubscriptions().then(
@@ -175,6 +180,5 @@ export default class Main extends Vue {
       }
     );
   }
-  
 }
 </script>
